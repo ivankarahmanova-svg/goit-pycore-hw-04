@@ -1,12 +1,12 @@
-def get_cats_info(path):
-    cats = []
+def get_cats_info(path: str) -> list[dict[str, str]]:
+    cats: list[dict[str, str]] = []
 
     try:
         with open(path, "r", encoding="utf-8") as file:
             for line in file:
                 cat_id, name, age = line.strip().split(",")
 
-                cat = {
+                cat: dict[str, str] = {
                     "id": cat_id,
                     "name": name,
                     "age": age
@@ -17,10 +17,9 @@ def get_cats_info(path):
         return cats
 
     except FileNotFoundError:
-        print("Файл не знайдено")
         return []
 
 
-# перевірка
-cats_info = get_cats_info("cats.txt")
-print(cats_info)
+if __name__ == "__main__":
+    cats_info = get_cats_info("cats.txt")
+    print(cats_info)

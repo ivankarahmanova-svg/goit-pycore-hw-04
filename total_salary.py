@@ -1,6 +1,6 @@
-def total_salary(path):
-    total = 0
-    count = 0
+def total_salary(path: str) -> tuple[int, float]:
+    total: int = 0
+    count: int = 0
 
     try:
         with open(path, "r", encoding="utf-8") as file:
@@ -9,15 +9,16 @@ def total_salary(path):
                 total += int(salary)
                 count += 1
 
-        average = total / count
-        return total, average
+        if count == 0:
+            return (0, 0.0)
+
+        average: float = total / count
+        return (total, average)
 
     except FileNotFoundError:
-        print("Файл не знайдено")
-        return (0, 0)
+        return (0, 0.0)
 
 
-# перевірка роботи функції
-total, average = total_salary("salary.txt")
-
-print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")
+if __name__ == "__main__":
+    total, average = total_salary("salary.txt")
+    print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")
